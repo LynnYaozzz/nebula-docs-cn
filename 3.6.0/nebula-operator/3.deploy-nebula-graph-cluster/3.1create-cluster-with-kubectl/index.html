@@ -5768,6 +5768,11 @@
 <td align="left">创建的NebulaGraph集群名称。</td>
 </tr>
 <tr>
+<td align="left"><code>spec.console</code></td>
+<td align="left">-</td>
+<td align="left">启动 Console 容器用于连接 Graph 服务。配置详情，参见 <a href="https://github.com/vesoft-inc/nebula-operator/blob/v1.6.2/doc/user/nebula_console.md#nebula-console">nebula-console</a>.</td>
+</tr>
+<tr>
 <td align="left"><code>spec.graphd.replicas</code></td>
 <td align="left"><code>1</code></td>
 <td align="left">Graphd 服务的副本数。</td>
@@ -5846,6 +5851,11 @@
 <td align="left"><code>spec.storaged.logVolumeClaim.storageClassName</code></td>
 <td align="left">-</td>
 <td align="left">Storaged 服务的日志盘存储配置。使用示例配置时需要将其替换为事先创建的存储类名称，参见 <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Classes</a> 查看创建存储类详情。</td>
+</tr>
+<tr>
+<td align="left"><code>spec.&lt;metad|storaged|graphd&gt;.securityContext</code></td>
+<td align="left"><code>{}</code></td>
+<td align="left">定义集群容器的权限和访问控制，以控制访问和执行容器的操作。详情参见 <a href="https://github.com/vesoft-inc/nebula-operator/blob/release-1.6/doc/user/security_context.md">SecurityContext</a>。</td>
 </tr>
 <tr>
 <td align="left"><code>spec.agent</code></td>

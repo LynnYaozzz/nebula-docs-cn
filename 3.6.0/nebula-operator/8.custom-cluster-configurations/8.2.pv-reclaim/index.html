@@ -5188,6 +5188,13 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    注意事项
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     操作步骤
   </a>
   
@@ -5664,6 +5671,13 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    注意事项
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     操作步骤
   </a>
   
@@ -5694,7 +5708,9 @@
 <p>用户也可以在集群实例的配置文件中通过设置参数<code>spec.enablePVReclaim</code>为<code>true</code>来定义在删除集群后自动删除 PVC 以释放数据。至于在删除 PVC 后是否删除 PV，用户需要自定义 PV 的回收策略。参见 <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/#reclaim-policy">StorageClass 中设置 reclaimPolicy</a> 和 <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming">PV Reclaiming</a> 了解 PV 回收策略。</p>
 <h2 id="_1">前提条件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>已使用 K8s 创建一个集群。具体步骤，参见<a href="../../3.deploy-nebula-graph-cluster/3.1create-cluster-with-kubectl/">使用 Kubectl 创建NebulaGraph集群</a>。</p>
-<h2 id="_2">操作步骤<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">注意事项<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>不支持在集群运行时动态增加或挂载 PV。</p>
+<h2 id="_3">操作步骤<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>以下示例使用名为<code>nebula</code>的集群、名为<code>nebula_cluster.yaml</code>的 YAML 配置文件，说明如何设置<code>enablePVReclaim</code>：</p>
 <ol>
 <li>

@@ -5611,28 +5611,123 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    加密场景
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mtls" class="md-nav__link">
+    启用 mTLS 并热更新证书
+  </a>
+  
+    <nav class="md-nav" aria-label="启用 mTLS 并热更新证书">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specmetagraphstorageconfig" class="md-nav__link">
+    配置spec.&lt;meta|graph|storage&gt;.config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initcontainerssidecarcontainersvolumesvolumemounts" class="md-nav__link">
+    配置initContainers、sidecarContainers、volumes和volumeMounts
+  </a>
+  
+    <nav class="md-nav" aria-label="配置initContainers、sidecarContainers、volumes和volumeMounts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initcontainers" class="md-nav__link">
+    initContainers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sidecarcontainers" class="md-nav__link">
+    sidecarContainers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    volumes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumemounts" class="md-nav__link">
+    volumeMounts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sslcerts" class="md-nav__link">
+    配置 sslCerts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    连接到 Graph 服务
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mtls_1" class="md-nav__link">
+    启用 mTLS 并冷更新证书
+  </a>
+  
+    <nav class="md-nav" aria-label="启用 mTLS 并冷更新证书">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#tls_secret" class="md-nav__link">
     创建 TLS 类型 Secret
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     证书配置说明
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    加密策略
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    加密场景
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     操作步骤
   </a>
   
@@ -5659,7 +5754,7 @@
 
 
 <h1 id="nebulagraph_tls">在NebulaGraph中启用 TLS 加密<a class="headerlink" href="#nebulagraph_tls" title="Permanent link">&para;</a></h1>
-<p>TLS 加密是一种常用的网络安全技术，可确保客户端与服务端之间的通信安全。其工作原理主要是通过使用加密算法来保护在网络中传输的数据，防止数据在传输过程中被截获或者篡改。在 TLS 连接建立过程中，服务端会向客户端发送一个包含公钥和一些身份信息的数字证书，这个证书是由受信任的第三方认证机构（Certificate Authority, CA）签发的。客户端会验证这个数字证书，以确认服务端的身份。在 K8s 环境NebulaGraph中，用户如果需建立 TLS 加密，默认建立双向认证 TLS 加密，即客户端和服务端都需要验证其身份，以保证客户端与服务端之间的通信安全。本文介绍如何在 K8s 环境NebulaGraph中启用 TLS 加密。</p>
+<p>TLS 加密是一种常用的网络安全技术，可确保客户端与服务端之间的通信安全。其工作原理主要是通过使用加密算法来保护在网络中传输的数据，防止数据在传输过程中被截获或者篡改。在 TLS 连接建立过程中，服务端会向客户端发送一个包含公钥和一些身份信息的数字证书，这个证书是由受信任的第三方认证机构（Certificate Authority, CA）签发的。客户端会验证这个数字证书，以确认服务端的身份。在 K8s 环境NebulaGraph中，用户如果需建立 TLS 加密，默认建立双向认证 TLS 加密（mTLS），即客户端和服务端都需要验证其身份，以保证客户端与服务端之间的通信安全。本文介绍如何在 K8s 环境NebulaGraph中启用 TLS 加密。</p>
 <h2 id="_1">前提条件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>已安装 NebulaGraph Operator。</li>
@@ -5672,7 +5767,484 @@
 </div>
 </li>
 </ul>
-<h2 id="tls_secret">创建 TLS 类型 Secret<a class="headerlink" href="#tls_secret" title="Permanent link">&para;</a></h2>
+<h2 id="_2">加密场景<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>在 K8s 环境中使用NebulaGraph，通常加密以下两种场景：</p>
+<ul>
+<li>客户端和 Graph 服务之间的加密。</li>
+</ul>
+<ul>
+<li>
+<p>Graph 服务、Meta 服务和 Storage 服务之间的通信进行加密。例如，Graph 服务和 Meta 服务之间的通信加密；Graph 服务和 Storage 服务之间的通信加密；Meta 服务和 Storage 服务之间的通信加密。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>在NebulaGraph中，Graph 服务是所有客户端请求的入口点。Graph 服务与 Meta、Storage 服务通信以完成客户端请求。因此，Graph 服务需要与 Meta、Storage 服务通信。另外，Storage 和 Meta 服务通过心跳消息相互通信，以确保其可用性和健康状况。因此，Storage 服务和 Meta 服务之间也需相互通信。</li>
+<li>因 Operator 和 Meta、Storage 服务之间有通信，所以，当服务间进行加密通信时，Operator 端也需要配置加密证书。详情见下文。</li>
+</ul>
+</div>
+</li>
+</ul>
+<p>除了以上两种常用的加密场景外，用户还可以根据自己的需求选择其他加密场景。详情参见<a href="../../../7.data-security/4.ssl/#authentication_policies">认证策略</a>。</p>
+<h2 id="mtls">启用 mTLS 并热更新证书<a class="headerlink" href="#mtls" title="Permanent link">&para;</a></h2>
+<p>NebulaGraph Operator 支持使用热重载证书的 mTLS 加密。以下示例用于在客户端和 Graph 服务之间以及服务之间启用 mTLS。</p>
+<details class="信息">
+<summary>查看客户端和 Graph 服务之间 mTLS 的示例配置</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps.nebula-graph.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NebulaCluster</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nebula</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">exporter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vesoft/nebula-stats-exporter</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">maxRequests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">  </span><span class="nt">graphd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># 以下参数用于启用客户端和 Graph 服务之间的 mTLS。</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_graph_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="c1"># 以下参数用于创建具有 Zone 的集群。</span>
+<span class="w">      </span><span class="c1"># accept_partial_success: &quot;true&quot;</span>
+<span class="w">      </span><span class="c1"># prioritize_intra_zone_reading: &quot;true&quot;</span>
+<span class="w">      </span><span class="c1"># sync_meta_when_use_space: &quot;true&quot;</span>
+<span class="w">      </span><span class="c1"># stick_to_intra_zone_on_failure: &quot;false&quot; </span>
+<span class="w">      </span><span class="c1"># session_reclaim_interval_secs: &quot;300&quot;</span>
+<span class="w">    </span><span class="nt">initContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init-auth-sidecar</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/sh</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cp /certs/* /credentials/</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">sidecarContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-sidecar</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">emptyDir</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Memory</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/local/nebula/certs</span>
+<span class="w">    </span><span class="nt">logVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200m&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500Mi&quot;</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v3.5.0-sc</span>
+<span class="w">  </span><span class="nt">metad</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Zone 名称一旦设置，就不能修改。</span>
+<span class="w">    </span><span class="c1"># 建议设置奇数个 Zone。</span>
+<span class="w">    </span><span class="c1"># zone_list: az1,az2,az3 </span>
+<span class="w">    </span><span class="nt">validate_session_timestamp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">    </span><span class="nt">licenseManagerURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.168.8.xxx:9119&quot;</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;300m&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500Mi&quot;</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v3.5.0-sc</span>
+<span class="w">    </span><span class="nt">dataVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="nt">logVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">  </span><span class="nt">storaged</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;300m&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500Mi&quot;</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v3.5.0-sc</span>
+<span class="w">    </span><span class="nt">dataVolumeClaims</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span>
+<span class="w">        </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="nt">logVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="nt">enableAutoBalance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">reference</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">statefulsets.apps</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="w">  </span><span class="nt">schedulerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nebula-scheduler</span>
+<span class="w">  </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">  </span><span class="nt">imagePullSecrets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nebula-image</span>
+<span class="w">  </span><span class="nt">enablePVReclaim</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="c1"># 开启 Zone 的时候配置，用于均衡 Storage Pod 的分布。</span>
+<span class="w">  </span><span class="c1"># topologySpreadConstraints:</span>
+<span class="w">  </span><span class="c1"># - topologyKey: &quot;kubernetes.io/zone&quot;</span>
+<span class="w">  </span><span class="c1">#   whenUnsatisfiable: &quot;DoNotSchedule&quot;</span>
+</code></pre></div>
+</details>
+<details class="信息">
+<summary>查看服务之间的 mTLS 的示例配置</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps.nebula-graph.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NebulaCluster</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nebula</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">exporter</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vesoft/nebula-stats-exporter</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">maxRequests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">  </span><span class="c1"># NebulaGraph Operator 用于访问 Storage 和 Meta 服务的证书文件。</span>
+<span class="w">  </span><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client-cert&quot;</span>
+<span class="w">    </span><span class="nt">caSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ca-cert&quot;</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">caCert</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;root.crt&quot;</span>
+<span class="w">  </span><span class="nt">graphd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># 用于启用服务之间的 mTLS。</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_meta_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">enable_storage_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w"> </span>
+<span class="w">      </span><span class="c1"># Zone 相关配置。</span>
+<span class="w">      </span><span class="c1"># accept_partial_success: &quot;true&quot;</span>
+<span class="w">      </span><span class="c1"># prioritize_intra_zone_reading: &quot;true&quot;</span>
+<span class="w">      </span><span class="c1"># sync_meta_when_use_space: &quot;true&quot;</span>
+<span class="w">      </span><span class="c1"># stick_to_intra_zone_on_failure: &quot;false&quot; </span>
+<span class="w">      </span><span class="c1"># session_reclaim_interval_secs: &quot;300&quot;</span>
+<span class="w">    </span><span class="nt">initContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init-auth-sidecar</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/sh</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cp /certs/* /credentials/</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">sidecarContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-sidecar</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">emptyDir</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Memory</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/local/nebula/certs</span>
+<span class="w">    </span><span class="nt">logVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;200m&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500Mi&quot;</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v3.5.0-sc</span>
+<span class="w">  </span><span class="nt">metad</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># Zone 名称一旦设置，就不能修改。</span>
+<span class="w">      </span><span class="c1"># 建议设置奇数个 Zone。</span>
+<span class="w">      </span><span class="c1"># zone_list: az1,az2,az3 </span>
+<span class="w">      </span><span class="nt">validate_session_timestamp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
+<span class="w">      </span><span class="c1"># 用于启用服务之间的 mTLS。</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_meta_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">enable_storage_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">initContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init-auth-sidecar</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/sh</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cp /certs/* /credentials/</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">sidecarContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-sidecar</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">emptyDir</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Memory</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/local/nebula/certs</span>
+<span class="w">    </span><span class="nt">licenseManagerURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.168.8.xx:9119&quot;</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;300m&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500Mi&quot;</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v3.5.0-sc</span>
+<span class="w">    </span><span class="nt">dataVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="nt">logVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">  </span><span class="nt">storaged</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="c1"># 用于启用服务之间的 mTLS。</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_meta_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">enable_storage_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w">  </span>
+<span class="w">    </span><span class="nt">initContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">init-auth-sidecar</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/sh</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
+<span class="w">        </span><span class="nt">args</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cp /certs/* /credentials/</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">sidecarContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-sidecar</span>
+<span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">emptyDir</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Memory</span>
+<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">        </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/local/nebula/certs</span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;300m&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;500Mi&quot;</span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1&quot;</span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1Gi&quot;</span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v3.5.0-sc</span>
+<span class="w">    </span><span class="nt">dataVolumeClaims</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span>
+<span class="w">        </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="nt">logVolumeClaim</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local-path</span>
+<span class="w">    </span><span class="c1"># 扩容后自动均衡 Storage 数据。</span>
+<span class="w">    </span><span class="c1"># enableAutoBalance: true</span>
+<span class="w">  </span><span class="nt">reference</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">statefulsets.apps</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="w">  </span><span class="nt">schedulerName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nebula-scheduler</span>
+<span class="w">  </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">  </span><span class="nt">imagePullSecrets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nebula-image</span>
+<span class="w">  </span><span class="c1"># 当集群被销毁后，是否自动删除 PVC。</span>
+<span class="w">  </span><span class="c1"># enablePVReclaim: true</span>
+<span class="w">  </span><span class="c1"># 启用 Zone 时配置，用于均衡 Storage Pod 的分布。</span>
+<span class="w">  </span><span class="c1"># topologySpreadConstraints:</span>
+<span class="w">  </span><span class="c1"># - topologyKey: &quot;kubernetes.io/zone&quot;</span>
+<span class="w">  </span><span class="c1">#   whenUnsatisfiable: &quot;DoNotSchedule&quot;</span>
+</code></pre></div>
+</details>
+<h3 id="specmetagraphstorageconfig">配置<code>spec.&lt;meta|graph|storage&gt;.config</code><a class="headerlink" href="#specmetagraphstorageconfig" title="Permanent link">&para;</a></h3>
+<p>要在客户端和 Graph 服务之间启用 mTLS，请在集群配置文件中的<code>spec.graphd.config</code>下添加以下字段。带有<code>*_path</code>的字段中指定的路径是相对于<code>/user/local/nebula</code>的文件路径。<strong>避免使用绝对路径以防止路径识别错误。</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">graph</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_graph_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</code></pre></div>
+<p>要在服务之间（Graph、Meta 和 Storage）启用 mTLS，请在集群配置文件中分别在<code>spec.metad.config</code>、<code>spec.graphd.config</code>和<code>spec.storaged.config</code>下添加以下字段。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">graph</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_meta_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">enable_storage_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">  </span><span class="nt">metad</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_meta_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">enable_storage_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">  </span><span class="nt">storaged</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ca_client_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">ca_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/root.crt</span>
+<span class="w">      </span><span class="nt">cert_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.crt</span>
+<span class="w">      </span><span class="nt">key_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certs/server.key</span>
+<span class="w">      </span><span class="nt">enable_meta_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">      </span><span class="nt">enable_storage_ssl</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</code></pre></div>
+<h3 id="initcontainerssidecarcontainersvolumesvolumemounts">配置<code>initContainers</code>、<code>sidecarContainers</code>、<code>volumes</code>和<code>volumeMounts</code><a class="headerlink" href="#initcontainerssidecarcontainersvolumesvolumemounts" title="Permanent link">&para;</a></h3>
+<p><code>initContainers</code>、<code>sidecarContainers</code>、<code>volumes</code>和<code>volumeMounts</code>字段是实现 mTLS 证书在线热更新的关键参数。这些字段用于配置一个负责生成证书文件的 init 容器和一个负责定期监视证书的过期时间的 sidecar 容器。这个过程确保了在线证书热更新，没有任何服务中断。</p>
+<ul>
+<li>对于只需要对 Graph 服务进行加密的加密场景，请在<code>spec.graph.config</code>下配置这些字段。</li>
+<li>对于需要对 Graph 服务、Meta 服务和 Storage 服务之间进行加密的加密场景，请在<code>spec.graph.config</code>、<code>spec.storage.config</code>和<code>spec.meta.config</code>下配置这些字段。</li>
+</ul>
+<h4 id="initcontainers"><code>initContainers</code><a class="headerlink" href="#initcontainers" title="Permanent link">&para;</a></h4>
+<p><code>initContainers</code>字段用于配置一个负责生成证书文件的 init 容器。注意，<code>volumeMounts</code>字段定义了<code>volumes</code>中指定的存储卷的挂载路径，这个存储卷可以被NebulaGraph容器读写。</p>
+<p>在以下示例中，<code>init-auth-sidecar</code>执行了将文件从镜像中的<code>certs</code>目录复制到 <code>/credentials</code>的任务。任务完成后，init 容器将退出。</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code>initContainers:
+- name: init-auth-sidecar
+    command:
+      - /bin/sh
+      - -c
+    args:
+      - cp /certs/* /credentials/
+    imagePullPolicy: Always
+    image: reg.vesoft-inc.com/xxx/xxx:latest
+    volumeMounts:
+      - name: credentials
+        mountPath: /credentials
+</code></pre></div>
+<h4 id="sidecarcontainers"><code>sidecarContainers</code><a class="headerlink" href="#sidecarcontainers" title="Permanent link">&para;</a></h4>
+<p><code>sidecarContainers</code>字段用于定期监视证书的过期时间，并在接近过期时生成新证书以替代现有证书。这个过程确保了在线证书热更新。<code>volumeMounts</code> 字段指定了一个卷如何挂载，而这个卷与服务容器共享。</p>
+<p>在提供的示例中，<code>auth-sidecar</code>容器使用<code>crond</code>进程，每分钟运行一次 crontab 脚本。该脚本使用<code>openssl x509 -noout -enddate</code>命令检查证书的过期状态。</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">sidecarContainers</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">auth-sidecar</span>
+<span class="w">  </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reg.vesoft-inc.com/xxx/xxx:latest</span>
+<span class="w">  </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">      </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/credentials</span>
+</code></pre></div>
+<h4 id="volumes"><code>volumes</code><a class="headerlink" href="#volumes" title="Permanent link">&para;</a></h4>
+<p><code>volumes</code>字段定义了需要附加到服务 Pod 的存储卷。在以下示例中，<code>credentials</code>存储卷的类型是<code>emptyDir</code>，它是一个临时存储卷。多个容器可以挂载这个<code>emptyDir</code>存储卷，它们都可以读取和写入存储卷内的相同文件。</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">volumes</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">  </span><span class="nt">emptyDir</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">medium</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Memory</span>
+</code></pre></div>
+<h4 id="volumemounts"><code>volumeMounts</code><a class="headerlink" href="#volumemounts" title="Permanent link">&para;</a></h4>
+<p><code>volumeMounts</code>字段指定了容器内挂载存储卷的位置。在下面的示例中，<code>credentials</code>存储卷被挂载到服务容器内的路径<code>/usr/local/nebula/certs</code>。</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credentials</span>
+<span class="w">  </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/local/nebula/certs</span>
+</code></pre></div>
+<h3 id="sslcerts">配置 <code>sslCerts</code><a class="headerlink" href="#sslcerts" title="Permanent link">&para;</a></h3>
+<p>当启用服务之间的 mTLS 时，仍然需要设置 <code>spec.sslCerts</code>，因为 Operator 会与 Meta 服务和 Storage 服务进行通信。</p>
+<p><code>spec.sslCerts</code>字段用于指定 Operator 和 <a href="https://github.com/vesoft-inc/nebula-agent">nebula-agent</a> 客户端（如果没有在 Operator 中使用默认配置的 nebula-agent 镜像）的加密证书。</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client-cert&quot;</span>
+<span class="w">    </span><span class="nt">caSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ca-cert&quot;</span><span class="w"> </span><span class="c1"># CA 证书的 Secret 名称</span>
+<span class="w">    </span><span class="nt">caCert</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;root.crt&quot;</span>
+</code></pre></div>
+<p><code>insecureSkipVerify</code>字段用于确定客户端是否验证服务器的证书链和主机名。在生产环境中，建议将其设置为<code>false</code>以确保通信的安全性。如果设置为<code>true</code>，客户端将不会验证服务器的证书链和主机名。</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">insecureSkipVerify</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在将<code>insecureSkipVerify</code>设置为<code>false</code>之前，请确保已将服务器的主机名或 IP 添加到服务器证书的<code>subjectAltName</code>字段中。如果没有添加服务器的主机名或 IP，则客户端在验证服务器的证书链和主机名时将会出错。有关详细信息，请参阅 <a href="https://kubernetes.io/docs/tasks/administer-cluster/certificates/#openssl">openssl</a>。</p>
+</div>
+<h3 id="graph">连接到 Graph 服务<a class="headerlink" href="#graph" title="Permanent link">&para;</a></h3>
+<p>通过运行<code>kubectl apply -f</code>应用集群配置文件后，可以使用 Console 客户端连接到 Graph 服务，使用以下命令：</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当需要外部客户端连接到 Graph 服务并要求使用 mTLS 时，需要根据不同的 <a href="../../../14.client/1.nebula-client/">客户端</a> 设置相关字段为客户端配置证书。</p>
+</div>
+<p>用户可以配置<code>spec.console</code>以在集群中启动 Console 容器。有关详细信息，请参见 <a href="https://github.com/vesoft-inc/nebula-operator/blob/v1.6.2/doc/user/nebula_console.md#nebula-console">nebula-console</a>。</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">console</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;v3.5.0&quot;</span>
+</code></pre></div>
+<p>然后，进入控制台容器，并运行以下命令以连接到 Graph 服务：</p>
+<div class="highlight"><pre><span></span><code>nebula-console<span class="w"> </span>-addr<span class="w"> </span>nebula-graphd-svc.default.svc.cluster.local<span class="w"> </span>-port<span class="w"> </span><span class="m">9669</span><span class="w"> </span>-u<span class="w"> </span>root<span class="w">  </span>-p<span class="w"> </span>nebula<span class="w"> </span>-enable_ssl<span class="w"> </span>-ssl_root_ca_path<span class="w"> </span>/home/xxx/cert/root.crt<span class="w"> </span>-ssl_cert_path<span class="w"> </span>/home/xxx/cert/client.crt<span class="w"> </span>-ssl_private_key_path<span class="w"> </span>/home/xxx/cert/client.key
+</code></pre></div>
+<h2 id="mtls_1">启用 mTLS 并冷更新证书<a class="headerlink" href="#mtls_1" title="Permanent link">&para;</a></h2>
+<p>如果没有热更新 mTLS 加密证书的需求，并可以 Secret 的方式传入证书，可以按照以下步骤启用 mTLS 加密。</p>
+<h3 id="tls_secret">创建 TLS 类型 Secret<a class="headerlink" href="#tls_secret" title="Permanent link">&para;</a></h3>
 <p>在 K8s 集群中，用户可以通过创建 Secret 来存储敏感信息，例如密码、OAuth 令牌和 TLS 证书等。在NebulaGraph中，用户可以通过创建 Secret 来存储 TLS 证书和私钥。在创建 Secret 时，需要指定 Secret 的类型 <code>tls</code>，<code>tls</code>类型的 Secret 用于存储 TLS/TLS 证书。</p>
 <p>例如，创建一个用于存储服务端证书和私钥的 Secret：</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>tls<span class="w"> </span>&lt;server-cert&gt;<span class="w"> </span>--key<span class="o">=</span>&lt;path/to/server.key&gt;<span class="w"> </span>--cert<span class="o">=</span>&lt;path/to/server.cert&gt;<span class="w"> </span>--namespace<span class="o">=</span>&lt;namespace&gt;
@@ -5687,9 +6259,10 @@
 <p>查看创建的 Secret：</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>--namespace<span class="o">=</span>&lt;namespace&gt;
 </code></pre></div>
-<h2 id="_2">证书配置说明<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Operator 提供<code>sslCerts</code>字段指定加密的证书。<code>sslCerts</code>字段包含三个子字段：<code>serverSecret</code>、<code>clientSecret</code>、<code>caSecret</code>。这三个字段分别用于指定NebulaGraph服务端证书、客户端证书和 CA 证书的 Secret 名称。当用户指定这三个字段时，Operator 会从对应的 Secret 中读取证书内容并挂载到集群的 Pod 中。</p>
+<h3 id="_3">证书配置说明<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Operator 提供<code>sslCerts</code>字段指定加密的证书。<code>sslCerts</code>字段包含三个子字段：<code>serverSecret</code>、<code>clientSecret</code>、<code>caSecret</code>。这三个字段分别用于指定NebulaGraph服务端证书、客户端证书和 CA 证书的 Secret 名称。同时，需要配置<code>autoMountServerCerts</code>的值为<code>true</code>，Operator 会从对应的 Secret 中读取证书内容并挂载到集群的 Pod 中。</p>
 <div class="highlight"><pre><span></span><code><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">autoMountServerCerts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w">    </span><span class="c1"># 是否自动挂载服务端证书和私钥到 Pod 中，默认为 false。</span>
 <span class="w">  </span><span class="nt">serverSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;server-cert&quot;</span><span class="w">     </span><span class="c1"># 服务端证书 Secret 的名称。</span>
 <span class="w">  </span><span class="nt">serverCert</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">                  </span><span class="c1"># 服务端证书 Secret 中证书的键名称，默认为 tls.crt。</span>
 <span class="w">  </span><span class="nt">serverKey</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">                   </span><span class="c1"># 服务端证书 Secret 中私钥的键名称，默认为 tls.key。</span>
@@ -5710,11 +6283,11 @@
 <p>在设置<code>insecureSkipVerify</code>为<code>false</code>时，确保服务端证书中的<code>subjectAltName</code>字段包含服务端的主机名或 IP 地址。如果服务端证书中的<code>subjectAltName</code>字段不包含服务端的主机名或 IP 地址，客户端在建立 TLS 连接时会报错。</p>
 </div>
 <p>当证书接近到期时，可以通过安装 <a href="https://cert-manager.io/docs/installation/supported-releases/">cert-manager</a> 自动更新 Secret。NebulaGraph会监听证书目录文件的变化，一旦检测到文件变动，便会将新的证书内容加载到内存中。</p>
-<h2 id="_3">加密策略<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>NebulaGraph提供了三种加密策略，用户可以根据自己的需求来选择和配置。</p>
+<h2 id="_4">加密场景<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>以下仅提供NebulaGraph三种加密场景配置。更多的加密场景配置，可参见<a href="../../../7.data-security/4.ssl/#authentication_policies">认证策略</a>。</p>
 <ul>
 <li>
-<p>全部服务间通信加密</p>
+<p>客户端和所有服务间通信加密</p>
 <p>如果想加密客户端、Graph 服务、Meta 服务和 Storage 服务之间的所有数据传输，需在每个服务中添加<code>enable_ssl = true</code>字段。</p>
 <p>配置示例：</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps.nebula-graph.io/v1alpha1</span>
@@ -5724,6 +6297,7 @@
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">autoMountServerCerts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w">   </span><span class="c1"># 是否自动挂载服务端证书和私钥到 Pod 中，默认为 false。</span>
 <span class="w">    </span><span class="nt">serverSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;server-cert&quot;</span><span class="w">  </span><span class="c1"># 服务端证书和私钥的 Secret 名称。</span>
 <span class="w">    </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client-cert&quot;</span><span class="w">  </span><span class="c1"># 客户端证书和私钥的 Secret 名称。</span>
 <span class="w">    </span><span class="nt">caSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ca-cert&quot;</span><span class="w">          </span><span class="c1"># CA 证书 Secret 名称。</span>
@@ -5751,6 +6325,7 @@
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">autoMountServerCerts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w"> </span>
 <span class="w">    </span><span class="nt">serverSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;server-cert&quot;</span>
 <span class="w">    </span><span class="nt">caSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ca-cert&quot;</span>
 <span class="w">  </span><span class="nt">graphd</span><span class="p">:</span>
@@ -5775,6 +6350,7 @@
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">autoMountServerCerts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w"> </span>
 <span class="w">    </span><span class="nt">serverSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;server-cert&quot;</span>
 <span class="w">    </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client-cert&quot;</span>
 <span class="w">    </span><span class="nt">caSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ca-cert&quot;</span>
@@ -5791,7 +6367,7 @@
 </li>
 </ul>
 <p>加密策略设置好后，当外部客户端连接 Graph 服务需要双向认证时，用户还需要根据<a href="../../../14.client/1.nebula-client/">客户端</a>的不同来设置相关的 TLS 参数。示例参见下文<strong>使用 NebulaGraph Console 连接 Graph 服务</strong>。</p>
-<h2 id="_4">操作步骤<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">操作步骤<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>使用预先生成的服务端、客户端证书和私钥、和 CA 证书分别创建 Secret。</p>
@@ -5814,6 +6390,7 @@
 <span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">sslCerts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">autoMountServerCerts</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">// 是否自动挂载服务端证书和私钥到 Pod 中。</span>
 <span class="w">    </span><span class="nt">serverSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;server-cert&quot;</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">// 服务端证书 Secret 名称。</span>
 <span class="w">    </span><span class="nt">clientSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client-cert&quot;</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">// 客户端证书 Secret 名称。</span>
 <span class="w">    </span><span class="nt">caSecret</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ca-cert&quot;</span><span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">// CA 证书 Secret 名称。</span>
