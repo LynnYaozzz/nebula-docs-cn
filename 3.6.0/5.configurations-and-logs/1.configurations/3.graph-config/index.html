@@ -6133,7 +6133,7 @@
 <tr>
 <td><code>enable_record_slow_query</code></td>
 <td><code>true</code></td>
-<td>是否启用慢查询记录。注：企业版功能。</td>
+<td>是否启用慢查询记录。注：企业版功能。<br/>当将其设置为<code>true</code>时，如果查询的执行时间超过<code>slow_query_threshold_us</code>定义的时间，NebulaGraph会将该查询记录到日志文件中。<br/>同时，<code>graphd</code>进程的内存中会缓存最近的几条慢查询，其缓存条数由<code>slow_query_limit</code>定义。缓存的慢查询可以通过 HTTP 接口获取。</td>
 <td>不支持</td>
 </tr>
 <tr>
