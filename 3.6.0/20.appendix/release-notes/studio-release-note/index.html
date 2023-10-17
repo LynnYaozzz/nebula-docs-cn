@@ -5453,6 +5453,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v370" class="md-nav__link">
+    v3.7.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v360" class="md-nav__link">
     v3.6.0
   </a>
@@ -5649,6 +5656,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v370" class="md-nav__link">
+    v3.7.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v360" class="md-nav__link">
     v3.6.0
   </a>
@@ -5676,6 +5690,41 @@
 
 
 <h1 id="nebulagraph_studio">NebulaGraph Studio 版本更新说明<a class="headerlink" href="#nebulagraph_studio" title="Permanent link">&para;</a></h1>
+<!--
+## v3.8.0
+
+- 增强
+  - 兼容性
+    由于数据库表结构变更，需要在配置文件内将`DB.AutoMigrate`设置为`true`，系统会自动对已有历史数据进行升级适配。
+
+    如果是自己手动创建的库表，请手动修改这些表：`task_infos`、`task_effects`、`sketches`、`schema_snapshots`、`favorites`、`files`、`datasources`。
+
+    示例如下：
+
+    <div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n n-Quoted">`task_infos`</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n n-Quoted">`b_id`</span><span class="w"> </span><span class="kt">CHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n n-Quoted">`task_infos`</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n n-Quoted">`b_id`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n n-Quoted">`id`</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n n-Quoted">`idx_task_infos_id`</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`task_infos`</span><span class="p">(</span><span class="n n-Quoted">`b_id`</span><span class="p">);</span>
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n n-Quoted">`task_effects`</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n n-Quoted">`b_id`</span><span class="w"> </span><span class="kt">CHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n n-Quoted">`task_effects`</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n n-Quoted">`b_id`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n n-Quoted">`id`</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n n-Quoted">`idx_task_effects_id`</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`task_effects`</span><span class="p">(</span><span class="n n-Quoted">`b_id`</span><span class="p">);</span>
+<span class="p">...</span>
+</code></pre></div>
+-->
+
+<h2 id="v370">v3.7.0<a class="headerlink" href="#v370" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>增强</p>
+<ul>
+<li>支持导入 SFTP、Amazon S3 的数据文件。</li>
+<li>导入页面支持配置更多导入参数，如并发数、重试次数等。</li>
+<li>支持重跑任务。</li>
+<li>支持任务保存为草稿。</li>
+<li>支持 ARM 架构。</li>
+</ul>
+</li>
+</ul>
 <h2 id="v360">v3.6.0<a class="headerlink" href="#v360" title="Permanent link">&para;</a></h2>
 <ul>
 <li>功能<ul>
