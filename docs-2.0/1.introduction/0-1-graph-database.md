@@ -12,9 +12,9 @@
 
 ### DB-Engines 的统计
 
-根据世界知名的数据库排名网站DB-Engines.com的统计，图数据库至2013年以来，一直是“增速最快”的数据库类别[^dbe]。
+根据世界知名的数据库排名网站 DB-Engines.com 的统计，图数据库至 2013 年以来，一直是“增速最快”的数据库类别[^dbe]。
 
-该网站根据一些指标来统计每种类别的数据库的流行度变化趋势，这些指标包括基于Google等搜索引擎的收录和趋势情况、主要IT技术论坛和社交网站上讨论的技术话题、招聘网站的职位变化等。该网站共收录了371种数据库产品，并分为12个类别。这12个类别中，图数据库这种类别的增速远远快于其他任何的类别。
+该网站根据一些指标来统计每种类别的数据库的流行度变化趋势，这些指标包括基于 Google 等搜索引擎的收录和趋势情况、主要 IT 技术论坛和社交网站上讨论的技术话题、招聘网站的职位变化等。该网站共收录了 371 种数据库产品，并分为 12 个类别。这 12 个类别中，图数据库这种类别的增速远远快于其他任何的类别。
 
 ![Image](https://docs-cdn.nebula-graph.com.cn/books/images/db-rankings.png)
 
@@ -22,13 +22,13 @@
 
 ### Gartner 的预测
 
-世界顶级智库Gartner早在2013年之前[^Gartner1]，就将图数据库作为主要的"商业智能与分析技术趋势"。在那个时候，Big Data正火热的如日中天，数据科学家更是炙手可热的职位。
+世界顶级智库 Gartner 早在 2013年 之前[^Gartner1]，就将图数据库作为主要的"商业智能与分析技术趋势"。在那个时候，Big Data 正火热的如日中天，数据科学家更是炙手可热的职位。
 
 ![Image](https://docs-cdn.nebula-graph.com.cn/books/images/gartner.jpg)
 
 [^Gartner1]: https://www.yellowfinbi.com/blog/2014/06/yfcommunitynews-big-data-analytics-the-need-for-pragmatism-tangible-benefits-and-real-world-case-165305
 
-直到最近，图数据库及相关的图技术依旧是"2021年十大数据与分析趋势"[^Gartner2]:
+直到最近，图数据库及相关的图技术依旧是 "2021 年十大数据与分析趋势" [^Gartner2]:
 
 ![Image](https://images-cdn.newscred.com/Zz01NWM5ZDE3YzcxM2UxMWViODBhMDE5NTExMjNjOTZmZQ==)
 
@@ -36,7 +36,7 @@
     
     图技术已成为许多现代数据和分析能力的基础，能够在不同的数据资产中发现人、地点、事物、事件和位置之间的关系。数据和分析领导者依靠图技术快速回答需要在了解情况并理解多个实体之间的联系和优势的性质后才能回答的复杂业务问题。
 
-    Gartner预测，到2025年图技术在数据和分析创新中的占比将从2021年的10%上升到80%。该技术将促进整个企业机构的快速决策。       
+    Gartner 预测，到 2025 年图技术在数据和分析创新中的占比将从 2021 年的 10% 上升到 80%。该技术将促进整个企业机构的快速决策。       
 
 [^Gartner2]: https://www.gartner.com/smarterwithgartner/gartner-top-10-data-and-analytics-trends-for-2021/
 
@@ -44,7 +44,7 @@
 
 ### 对于市场规模的预测
 
-根据 verifiedmarketresearc[^ver], fnfresearch[^fnf],  marketsandmarkets[^mam], 以及 gartner[^gar] 等智库的统计和预测，图数据库市场（包括云服务）规模在2019年大约是8亿美元，将在未来6年保持25%左右的年复合增长(CAGR)至 30-40 亿美元，这大约对应于全球数据库市场 5-10% 的市场份额。
+根据 verifiedmarketresearc[^ver], fnfresearch[^fnf],  marketsandmarkets[^mam], 以及 gartner[^gar] 等智库的统计和预测，图数据库市场（包括云服务）规模在 2019 年大约是 8 亿美元，将在未来 6 年保持 25% 左右的年复合增长 (CAGR) 至 30-40 亿美元，这大约对应于全球数据库市场 5-10% 的市场份额。
 
 ![Image](https://www.verifiedmarketresearch.com/wp-content/uploads/2020/10/Graph-Database-Market-Size.jpg)
 
@@ -68,17 +68,17 @@ https://www.marketsandmarkets.com/Market-Reports/graph-database-market-126230231
 [^Glang]: I. F. Cruz, A. O. Mendelzon, and P. T. Wood. A Graphical Query Language Supporting Recursion. In Proceedings of the Association for Computing Machinery Special Interest Group on Management of Data, pages 323–330. ACM Press, May 1987.
 
 
-!!! Info "本小节关于Neo4j和其创造的图查询语言Cypher的历史内容主要摘录自 ISO WG3 的工作论文"An overview of the recent history of Graph Query Languages"[^Tobias2018] 和[^Glang]，本书作者根据最新两年的进展有删减和更新。"
+!!! Info "本小节关于 Neo4j 和其创造的图查询语言 Cypher 的历史内容主要摘录自 ISO WG3 的工作论文"An overview of the recent history of Graph Query Languages"[^Tobias2018] 和[^Glang]，本书作者根据最新两年的进展有删减和更新。"
 
 !!! Note "关于图查询语言(Graph Query Language，GQL) 和国际标准的制定"
 
-    熟悉数据库的读者可能都知道结构化查询语言SQL。通过使用SQL，人们以接近自然语言的方式访问数据库。在 SQL 被广泛采用和标准化之前，关系型数据库的市场是非常碎片和割裂的——各家厂商的产品都有完全不同的接入访问方式，数据库产品自身的开发人员、数据库产品周边工具的开发人员、数据库最终的使用人员，都不得不学习各个厂商的完全不同的产品，在不同产品之间迁移极其困难。当1989年SQL-89标准被制定后，整个关系型数据库的市场快速收敛到SQL-89上。这大大降低了上述各种人员的学习曲线。
+    熟悉数据库的读者可能都知道结构化查询语言 SQL。通过使用 SQL，人们以接近自然语言的方式访问数据库。在 SQL 被广泛采用和标准化之前，关系型数据库的市场是非常碎片和割裂的——各家厂商的产品都有完全不同的接入访问方式，数据库产品自身的开发人员、数据库产品周边工具的开发人员、数据库最终的使用人员，都不得不学习各个厂商的完全不同的产品，在不同产品之间迁移极其困难。当 1989 年 SQL-89 标准被制定后，整个关系型数据库的市场快速收敛到 SQL-89 上。这大大降低了上述各种人员的学习曲线。
 
-    类似的，在图数据库领域，图语言(GQL)承担了类似于SQL的作用，是一种用户与图数据库主要的交互方式。但不同于SQL-89这种国际标准，GQL还没有任何国际标准。目前有两种主流的图语言：
+    类似的，在图数据库领域，图语言 (GQL) 承担了类似于SQL的作用，是一种用户与图数据库主要的交互方式。但不同于 SQL-89 这种国际标准，GQL 还没有任何国际标准。目前有两种主流的图语言：
 
-    Neo4j的Cypher (及其后续——ISO正在制定过程中的 GQL-standard 草案)和Apache TinkerPop的Gremlin。前者通常被称为声明式语言(Declarative query language)——也即用户只需要告诉系统“要什么”，而不管“怎么做”；后者通常被称为命令式语言(Imperative query language)，用户会显式地指定系统的操作。
+    Neo4j 的 Cypher (及其后续——ISO正在制定过程中的 GQL-standard 草案)和 Apache TinkerPop 的 Gremlin。前者通常被称为声明式语言(Declarative query language)——也即用户只需要告诉系统“要什么”，而不管“怎么做”；后者通常被称为命令式语言(Imperative query language)，用户会显式地指定系统的操作。
     
-    GQL国际标准正在制定过程中。
+    GQL 国际标准正在制定过程中。
 
 [^Tobias2018]: "An overview of the recent history of Graph Query Languages". Authors: Tobias Lindaaker, U.S. National Expert.Date: 2018-05-14 
 
@@ -89,7 +89,7 @@ https://www.marketsandmarkets.com/Market-Reports/graph-database-market-126230231
 - 2007 年，Neo4j 开始以一个公司的方式运作。
 - 2009 年，Neo4j 团队借鉴 XPath 作为图查询语言，Gremlin[^Gremlin]最初也是基于这个想法。
 - 2010 年，Neo4j 的员工 Marko Rodriguez 采用术语属性图（Property Graph）来描述 Neo4j 和 Tinkerpop / Gremlin 的数据模型。
-- 2011 年，第一个公开发行版本 Neo4j 1.4; 并发布了Cypher的第一个版本。
+- 2011 年，第一个公开发行版本 Neo4j 1.4; 并发布了 Cypher 的第一个版本。
 - 2012 年，Neo4j 1.8 为 Cypher 增加写入图的能力。Neo4j 2.0 增加了标签和索引，Cypher 成为一种声明式的语言。
 - 2015 年，Neo4j 将 Cypher 开源为 openCypher。
 - 2017 年，ISO WG3 工作组开始讨论如何将属性图查询能力引入 SQL。
@@ -111,15 +111,15 @@ Neo4j 和属性图这种数据模型，最早构想于 2000 年。Neo4j 的创�
 
 #### Gremlin 的创造
 
-Gremlin是基于Apache TinkerPop开发的图语言，其风格接近于一连串的函数（过程）调用。最初 Neo4j 的查询方式是通过 Java API。应用程序可以将查询引擎作为库(library)嵌入到应用程序中，然后使用 API 来查询图。
+Gremlin 是基于 Apache TinkerPop 开发的图语言，其风格接近于一连串的函数（过程）调用。最初 Neo4j 的查询方式是通过 Java API。应用程序可以将查询引擎作为库(library)嵌入到应用程序中，然后使用 API 来查询图。
 
-就在这段时间，NoSQL 这个概念开始出现。NoSQL 型的数据库引擎一般用 REST 和 HTTP 来交互和查询。Neo4j 的早期员工 Tobias Lindaaker、Ivarsson、Peter Neubauer 、Marko Rodriguez用 XPath 作为图查询，Groovy 提供循环结构，分支和计算（等图灵完毕的功能）。 这个就是 Gremlin 最初的原型。 2009 年 11 月发布了第一个版本。
+就在这段时间，NoSQL 这个概念开始出现。NoSQL 型的数据库引擎一般用 REST 和 HTTP 来交互和查询。Neo4j 的早期员工 Tobias Lindaaker、Ivarsson、Peter Neubauer 、Marko Rodriguez 用 XPath 作为图查询，Groovy 提供循环结构，分支和计算（等图灵完毕的功能）。 这个就是 Gremlin 最初的原型。 2009 年 11 月发布了第一个版本。
 
 后来，Marko 发现同时用两种不同的解析器（XPath 和 Groovy）有很多问题，就将 Gremlin 改为基于 Groovy 的一种领域特定语言（DSL）。
 
 #### Cypher 的创造
 
-Gremlin 和 Neo4j 的 Java API 一样，最初用于表达如何查询数据库的一种过程（Procedural）。它允许更短的语法来表达查询，也允许通过网络远程访问数据库。Gremlin 这种过程式的特性，需要用户知道如何采用最好的办法查询结果，这样对于应用程序开发人员来说仍旧有负担。与此同时，在过去30年中，声明式语言 SQL 取得了极大的成功：SQL 可以将“获取数据的声明方式”和“引擎如何获取数据”相分开，所以 Neo4j 的工程师们希望开发一种声明式的图查询语言。
+Gremlin 和 Neo4j 的 Java API 一样，最初用于表达如何查询数据库的一种过程（Procedural）。它允许更短的语法来表达查询，也允许通过网络远程访问数据库。Gremlin 这种过程式的特性，需要用户知道如何采用最好的办法查询结果，这样对于应用程序开发人员来说仍旧有负担。与此同时，在过去 30 年中，声明式语言 SQL 取得了极大的成功：SQL 可以将“获取数据的声明方式”和“引擎如何获取数据”相分开，所以 Neo4j 的工程师们希望开发一种声明式的图查询语言。
 
 2010 年，Andrés Taylor 作为工程师加入 Neo4j。受 SQL 启发，他启动了一个项目来开发图查询语言，而这种新语言于 2011 年 Neo4j 1.4 发布，这种新语言就是如今大多数图查询语言的先祖——Cypher 。
 
@@ -230,7 +230,7 @@ RETURN movie.title AS title
 
 除了聚焦于图产品的厂商外，传统巨头也纷纷进入这个领域。
 
-Microsoft Azure Cosmos DB[^cosmos] 是一个在微软云上的多模数据库云服务，可以提供SQL、文档、图、key-value等多种能力；
+Microsoft Azure Cosmos DB[^cosmos] 是一个在微软云上的多模数据库云服务，可以提供 SQL、文档、图、key-value 等多种能力；
 Amazon AWS Neptune[^neptune] 是一种由 AWS 提供图数据库云服务, 可以提供属性图和 RDF 两种数据模型；
 Oracle graph[^Oracle] 是关系型数据库巨头 Oracle 在图技术与图数据库方向的产品。
 
